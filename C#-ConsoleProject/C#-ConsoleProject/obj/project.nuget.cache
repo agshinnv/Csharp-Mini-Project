@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "4Np17zHXJZji21B0W34drezdRfyRByLOeXAC2HjJc2t+c7y/7j5tF5jjWgbXpRru5vblKwqjdGMmVgKY3nTnlA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Agshin\\Desktop\\FullStackDeveloper\\C#\\C#-ConsoleProject\\C#-ConsoleProject\\C#-ConsoleProject\\C#-ConsoleProject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Agshin\\.nuget\\packages\\spectre.console\\0.47.0\\spectre.console.0.47.0.nupkg.sha512",
+    "C:\\Users\\Agshin\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512"
+  ],
+  "logs": []
+}

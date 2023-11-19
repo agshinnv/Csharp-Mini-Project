@@ -1,0 +1,17 @@
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\C#-ConsoleProject.exe
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\C#-ConsoleProject.deps.json
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\C#-ConsoleProject.runtimeconfig.json
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\C#-ConsoleProject.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\C#-ConsoleProject.pdb
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\Spectre.Console.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.csproj.AssemblyReference.cache
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.AssemblyInfoInputs.cache
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.AssemblyInfo.cs
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.csproj.CoreCompileInputs.cache
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.csproj.CopyComplete
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\refint\C#-ConsoleProject.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.pdb
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.genruntimeconfig.cache
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\ref\C#-ConsoleProject.dll
