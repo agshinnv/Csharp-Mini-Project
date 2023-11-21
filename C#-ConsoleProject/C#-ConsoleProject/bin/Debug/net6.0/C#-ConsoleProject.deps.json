@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "C#-ConsoleProject/1.0.0": {
         "dependencies": {
+          "Service": "1.0.0",
           "Spectre.Console": "0.47.0"
         },
         "runtime": {
@@ -25,7 +26,33 @@
           }
         }
       },
-      "System.Memory/4.5.5": {}
+      "System.Memory/4.5.5": {},
+      "Domain/1.0.0": {
+        "dependencies": {
+          "Spectre.Console": "0.47.0"
+        },
+        "runtime": {
+          "Domain.dll": {}
+        }
+      },
+      "Repository/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Spectre.Console": "0.47.0"
+        },
+        "runtime": {
+          "Repository.dll": {}
+        }
+      },
+      "Service/1.0.0": {
+        "dependencies": {
+          "Repository": "1.0.0",
+          "Spectre.Console": "0.47.0"
+        },
+        "runtime": {
+          "Service.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -47,6 +74,21 @@
       "sha512": "sha512-XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
       "path": "system.memory/4.5.5",
       "hashPath": "system.memory.4.5.5.nupkg.sha512"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

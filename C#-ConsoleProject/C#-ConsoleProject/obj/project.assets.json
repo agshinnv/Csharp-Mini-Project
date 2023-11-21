@@ -26,6 +26,47 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Spectre.Console": "0.47.0"
+        },
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Spectre.Console": "0.47.0"
+        },
+        "compile": {
+          "bin/placeholder/Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repository.dll": {}
+        }
+      },
+      "Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Repository": "1.0.0",
+          "Spectre.Console": "0.47.0"
+        },
+        "compile": {
+          "bin/placeholder/Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Service.dll": {}
+        }
       }
     }
   },
@@ -70,10 +111,26 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Repository/1.0.0": {
+      "type": "project",
+      "path": "../Repository/Repository.csproj",
+      "msbuildProject": "../Repository/Repository.csproj"
+    },
+    "Service/1.0.0": {
+      "type": "project",
+      "path": "../Service/Service.csproj",
+      "msbuildProject": "../Service/Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Service >= 1.0.0",
       "Spectre.Console >= 0.47.0"
     ]
   },
@@ -103,7 +160,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Agshin\\Desktop\\FullStackDeveloper\\C#\\C#-ConsoleProject\\C#-ConsoleProject\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\Agshin\\Desktop\\FullStackDeveloper\\C#\\C#-ConsoleProject\\C#-ConsoleProject\\Service\\Service.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -15,3 +15,9 @@ C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProjec
 C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.pdb
 C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\C#-ConsoleProject.genruntimeconfig.cache
 C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\obj\Debug\net6.0\ref\C#-ConsoleProject.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\Domain.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\Repository.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\Service.dll
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\Service.pdb
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\Domain.pdb
+C:\Users\Agshin\Desktop\FullStackDeveloper\C#\C#-ConsoleProject\C#-ConsoleProject\C#-ConsoleProject\bin\Debug\net6.0\Repository.pdb
