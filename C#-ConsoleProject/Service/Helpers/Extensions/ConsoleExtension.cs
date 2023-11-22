@@ -13,7 +13,7 @@ namespace Service.Helpers.Extensions
         {
             Console.ForegroundColor = color;
             Console.WriteLine(text);
-            Console.Clear(); 
+            Console.ResetColor(); 
         }
     }
 }
