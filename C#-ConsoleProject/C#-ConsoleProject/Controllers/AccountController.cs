@@ -58,7 +58,7 @@ namespace C__ConsoleProject.Controllers
             }
 
             
-            Console.WriteLine("Please add a email:");
+            Console.WriteLine("Please add email:");
             Email: string email = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(email))
             {
@@ -74,7 +74,7 @@ namespace C__ConsoleProject.Controllers
                 email.CheckEmail();
             }
 
-            Console.WriteLine("Add a password:");
+            Console.WriteLine("Add password:");
             Pass: string password = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(email))
             {
@@ -102,16 +102,35 @@ namespace C__ConsoleProject.Controllers
 
             _service.Register(user);
 
-            ConsoleColor.Green.WriteConsole("Your registration is successfully");
+            ConsoleColor.Green.WriteConsole("Register success");
 
         }
 
         public void Login()
         {
-            Console.WriteLine("Please add email");
-            string email = Console.ReadLine();
-            Console.WriteLine("Please add password");
-            string password = Console.ReadLine();
+            Console.WriteLine("Please add email:");
+            Email: string email = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                ConsoleColor.Red.WriteConsole("Email can't be empty");
+                goto Email;
+            }
+            else if (!email.CheckEmail())
+            {
+                goto Email;
+            }
+            else
+            {
+                email.CheckEmail();
+            }
+
+            Console.WriteLine("Please add password:");
+            Pass: string password = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                ConsoleColor.Red.WriteConsole("Password can't be empty");
+                goto Pass;
+            }
 
             var res = _service.Login(email, password);
             
@@ -121,7 +140,7 @@ namespace C__ConsoleProject.Controllers
             }
             else
             {
-                ConsoleColor.Red.WriteConsole("Login is successfully");                
+                ConsoleColor.Green.WriteConsole("Login is successfully");                
             }
 
             

@@ -13,7 +13,7 @@ namespace Service.Helpers.Extensions
         {
             if(password != confirmPassword)
             {
-                ConsoleColor.Red.WriteConsole("Confirm password incorrect");
+                ConsoleColor.Red.WriteConsole("The information you typed doesn't match");
                 return false;
             }
 
