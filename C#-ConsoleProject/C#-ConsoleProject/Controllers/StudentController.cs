@@ -64,39 +64,37 @@ namespace C__ConsoleProject.Controllers
                 ConsoleColor.Red.WriteConsole("Can't be empty");
                 goto Phone;
             }
+                       
 
-
-            Console.WriteLine("Please add student to gorup:");
-            Group: string gorupName = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(gorupName))
+            Console.WriteLine("Please enter group ID:");
+            Id: string idStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(idStr))
             {
                 ConsoleColor.Red.WriteConsole("Can't be empty");
-                goto Group;
+                goto Id;
             }
-
-            if(AppDbContext<Student>.Datas.Exists(m=>m.FullName == gorupName))
+            
+            bool isFormatId = int.TryParse(idStr, out int id);
+            if(!isFormatId)
             {
-
-            }
-
-
-
-
-
-
-
-
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Id;
+            }            
 
             Student student = new Student()
             {
                 FullName = fullName,
                 Phone = phone,
-                Address = address,
-                Age = age
+                Address = address.Trim().ToLower(),
+                Age = age                
             };
 
+                      
+
+
             _service.Create(student);
+
+
         }
 
         public void Edit()
@@ -187,9 +185,18 @@ namespace C__ConsoleProject.Controllers
             }
         }
 
-        public void Filter()
+        public void Sorting()
         {
-            Console.WriteLine("Please write what do you want to sort");
+            Console.WriteLine("Please select one to sort students by age: asc or desc");
+
+            string sortText = Console.ReadLine();
+
+            foreach(var student in _service.Sorting(sortText))
+            {
+                Console.WriteLine(student.Id + "-" + student.FullName + "-" + student.Age + "-" + student.Address);
+            }
+
+            
         }
     }
 }

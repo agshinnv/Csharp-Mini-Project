@@ -16,8 +16,8 @@ StudentController studentController = new StudentController();
 //    Console.WriteLine("Choose one option : 1-Login or 2-Register");
 //    string operationStr = Console.ReadLine();
 //    bool isFormatOperation = int.TryParse(operationStr, out int operation);   
-        
-    
+
+
 //    switch (operation)
 //    {
 //        case (int)AccountOperationTypes.Register:
@@ -33,7 +33,7 @@ StudentController studentController = new StudentController();
 //            break;
 //    }
 
-   
+
 //}
 
 
@@ -46,6 +46,36 @@ StudentController studentController = new StudentController();
 //}
 
 
+//while (true)
+//{
+//    Console.WriteLine("Choose one option : ");
+//    string operationStr = Console.ReadLine();
+//    bool isFormatOperation = int.TryParse(operationStr, out int operation);
+
+//    switch (operation)
+//    {
+//        case 1: studentController.Create();
+//            break;
+//        case 2: studentController.Delete(); 
+//            break;
+//        case 3: studentController.GetById();
+//            break;
+//        case 4: studentController.GetAll();
+//            break;
+//        case 5: studentController.Search();
+//            break;
+//        case 6: studentController.Sorting();
+//            break;
+
+
+
+//        default:
+//            break;
+//    }
+//}
+
+
+
 while (true)
 {
     Console.WriteLine("Choose one option : ");
@@ -54,15 +84,23 @@ while (true)
 
     switch (operation)
     {
-        case 1: studentController.Create();
+        case 1:
+            groupController.Create();
             break;
-        case 2: studentController.Delete(); 
+        case 2:
+            groupController.Delete();
             break;
-        case 3: studentController.GetById();
+        case 3:
+            groupController.GetById();
             break;
-        case 4: studentController.GetAll();
+        case 4:
+            groupController.GetAll();
             break;
-        case 5: studentController.Search();
+        case 5:
+            groupController.Search();
+            break;
+        case 6:
+            groupController.Sort();
             break;
 
 
@@ -71,4 +109,3 @@ while (true)
             break;
     }
 }
-

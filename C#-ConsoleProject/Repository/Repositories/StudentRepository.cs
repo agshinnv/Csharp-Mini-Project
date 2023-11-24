@@ -11,14 +11,14 @@ namespace Repository.Repositories
 {
     public class StudentRepository : BaseRepository<Student>, IStudentRepository
     {
-        public List<Student> Filter()
+        public List<Student> Sorting(string sortType)
         {
             return AppDbContext<Student>.Datas.OrderBy(m => m.Age).ToList();
         }
 
         public List<Student> Search(string searchtext)
         {
-            return AppDbContext<Student>.Datas.Where(m=>m.FullName == searchtext).ToList();
+            return AppDbContext<Student>.Datas.Where(m=>m.FullName.Trim().ToLower() == searchtext.Trim().ToLower()).ToList();
         }
     }
 }

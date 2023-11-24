@@ -10,6 +10,6 @@ namespace Repository.Repositories.Interfaces
     public interface IStudentRepository : IBaseRepository<Student>
     {
         List<Student> Search(string searchtext);
-        List<Student> Filter();
+        List<Student> Sorting(string sortType);
     }
 }

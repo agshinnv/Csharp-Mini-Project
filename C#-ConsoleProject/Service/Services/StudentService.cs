@@ -34,9 +34,13 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public List<Student> Filter()
+        public List<Student> Sorting(string sortType)
         {
-           return _repository.Filter();
+            if(sortType.Trim().ToLower() == "asc".Trim().ToLower())
+            {
+                return _repository.Sorting(sortType).OrderBy(m=>m.Age).ToList();
+            }
+           return _repository.Sorting(sortType).OrderByDescending(m=>m.Age).ToList();
         }
 
         public List<Student> GetAll()

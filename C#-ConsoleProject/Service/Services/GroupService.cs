@@ -49,9 +49,13 @@ namespace Service.Services
             return _repository.Search(searchtext);
         }
 
-        public List<Group> Sort()
+        public List<Group> Sort(string sortType)
         {
-            return _repository.Sort();
+            if (sortType.Trim().ToLower() == "asc".Trim().ToLower())
+            {
+                return _repository.Sort(sortType).OrderBy(m => m.Capacity).ToList();
+            }
+            return _repository.Sort(sortType).OrderByDescending(m => m.Capacity).ToList();
         }
     }
 }

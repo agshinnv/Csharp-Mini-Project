@@ -16,7 +16,7 @@ namespace Repository.Repositories
             return AppDbContext<Group>.Datas.Where(m=>m.Name.Trim().ToLower().Contains(searchtext.Trim().ToLower())).ToList();
         }
 
-        public List<Group> Sort()
+        public List<Group> Sort(string sortType)
         {
             return AppDbContext<Group>.Datas.OrderBy(m => m.Capacity).ToList();
         }

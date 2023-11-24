@@ -84,12 +84,14 @@ namespace C__ConsoleProject.Controllers
 
             var group = groups.FirstOrDefault(m=>m.Name.Trim().ToLower() == text.Trim().ToLower());
 
+            _service.Delete(group);
+
             
         }
 
         public void GetById()
         {
-            ConsoleColor.Blue.WriteConsole("Please write Id of group which you want delete");
+            ConsoleColor.Blue.WriteConsole("Please write Id of group which you want delete:");
             GroupId: string idStr = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(idStr))
@@ -139,7 +141,14 @@ namespace C__ConsoleProject.Controllers
 
         public void Sort()
         {
-            Console.WriteLine("Please write what do you want to sort");
+            Console.WriteLine("Please select one to sort groups by capacity: asc or desc");
+
+            string sortText = Console.ReadLine();
+
+            foreach (var group in _service.Sort(sortText))
+            {
+                Console.WriteLine($"Group Name: {group.Name}, Capacity: {group.Capacity}");
+            }
         }
 
     }
