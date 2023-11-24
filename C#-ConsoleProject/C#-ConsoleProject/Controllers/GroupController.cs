@@ -68,6 +68,12 @@ namespace C__ConsoleProject.Controllers
 
         public void Delete()
         {
+            var groups = _service.GetAll();
+            foreach(var item in groups)
+            {
+                Console.WriteLine(item.Name + "-" + item.Capacity);
+            }
+
             ConsoleColor.Blue.WriteConsole("Please write name of group which you want delete");
             Text: string text = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(text))
@@ -76,14 +82,9 @@ namespace C__ConsoleProject.Controllers
                 goto Text;
             }
 
-            Group groupName = AppDbContext<Group>.Datas.FirstOrDefault(m => m.Name.Trim().ToLower() == text.Trim().ToLower());
+            var group = groups.FirstOrDefault(m=>m.Name.Trim().ToLower() == text.Trim().ToLower());
 
-            if (groupName == null)
-            {
-                Console.WriteLine("Group couldn't find");
-                return;
-            }
-
+            
         }
 
         public void GetById()
@@ -99,9 +100,46 @@ namespace C__ConsoleProject.Controllers
 
             bool isFormatId = int.TryParse(idStr, out int id);
 
-            Group groupName = AppDbContext<Group>.Datas.FirstOrDefault(m => m.Id == id);
+            var result = _service.GetbyId(id);
 
-            Console.WriteLine($"{ groupName.Name}");
+            Console.WriteLine($"{result.Name}");
+        }
+
+
+        public void GetAll()
+        {
+            Console.WriteLine("All groups");
+            var result = _service.GetAll();
+            foreach(var item in result)
+            {
+                Console.WriteLine($"{item.Id} - {item.Name} - {item.Capacity}");
+            }
+        }
+
+
+        public void Search()
+        {
+            Console.WriteLine("Please write what do you want to search:");
+            Text: string text = Console.ReadLine();
+
+            if(string.IsNullOrWhiteSpace(text))
+            {
+                ConsoleColor.Red.WriteConsole("Can't be empty");
+                
+                goto Text;
+            }
+
+            var res = _service.Search(text);
+
+            foreach(var item in res)
+            {
+                Console.WriteLine($"{item.Name} - {item.Capacity}");
+            }
+        }
+
+        public void Sort()
+        {
+            Console.WriteLine("Please write what do you want to sort");
         }
 
     }
