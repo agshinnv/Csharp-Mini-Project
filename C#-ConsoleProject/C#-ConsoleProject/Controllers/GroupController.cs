@@ -4,7 +4,9 @@ using Service.Helpers.Extensions;
 using Service.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -69,28 +71,75 @@ namespace C__ConsoleProject.Controllers
         public void Delete()
         {
             var groups = _service.GetAll();
-            foreach(var item in groups)
+            foreach (var item in groups)
             {
-                Console.WriteLine(item.Name + "-" + item.Capacity);
+                Console.WriteLine(item.Id + "-" + item.Name + "-" + item.Capacity);
             }
 
-            ConsoleColor.Blue.WriteConsole("Please write name of group which you want delete");
-            Text: string text = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(text))
+            ConsoleColor.Blue.WriteConsole("Please write Id of group which you want delete:");
+            Del: string idStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(idStr))
             {
                 ConsoleColor.Red.WriteConsole("Write something, please");
-                goto Text;
+                goto Del;
             }
 
-            var group = groups.FirstOrDefault(m=>m.Name.Trim().ToLower() == text.Trim().ToLower());
+            bool isFormatId = int.TryParse(idStr, out int id);
 
-            _service.Delete(group);
+            if (!isFormatId)
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Del;
+            }
 
-            
+            var student = groups.FirstOrDefault(m => m.Id == id);
+
+            _service.Delete(student);
         }
-
         public void Edit()
         {
+            Console.WriteLine("Write ID for changing:");
+            string idStr = Console.ReadLine();
+            bool isCorrectFormat = int.TryParse(idStr,out int id);
+            if (isCorrectFormat)
+            {
+                var result = _service.GetbyId(id);
+                if(result == null)
+                {
+                    ConsoleColor.Red.WriteConsole("Group not found");
+                }
+                if (result != null)
+                {
+                    Console.WriteLine($"Group name: {result.Name} - Group capacity: {result.Capacity}");
+
+                    Console.WriteLine("Please write the group name for changing:");
+                    Name: string name = Console.ReadLine();
+
+                    var groups = _service.GetAll();
+                    
+                    foreach ( var group in groups)
+                    {
+                        if(group.Name.Trim().ToLower() == name.Trim().ToLower())
+                        {
+                            Console.WriteLine("Name already existing");
+                            goto Name;
+                        }
+                    }
+
+
+                    Console.WriteLine("Please write teh group capacity for change:");
+                    string capacityStr = Console.ReadLine();
+                    bool isFormatCorrect = int.TryParse(capacityStr,out int capacity);
+
+                    _service.Edit(id, new Group { Name = name, Capacity = capacity });
+                    Console.WriteLine("Group information was successfully edited");
+                }
+            }
+
+            if(!isCorrectFormat)
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+            }
 
         }
 

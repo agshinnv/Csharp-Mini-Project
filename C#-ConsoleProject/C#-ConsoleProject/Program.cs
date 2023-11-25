@@ -7,7 +7,7 @@ AnsiConsole.Write(
         .LeftJustified()
         .Color(Color.LightGoldenrod2_2));
 
-AccountController AccountController = new AccountController();
+AccountController accountController = new AccountController();
 GroupController groupController = new GroupController();
 StudentController studentController = new StudentController();
 
@@ -21,20 +21,21 @@ while (true)
     switch (operation)
     {
         case (int)AccountOperationTypes.Register:
-            AccountController.Register();
+            accountController.Register();
             break;
 
 
         case (int)AccountOperationTypes.Login:
-            AccountController.Login();
+            accountController.Login();
             goto Menu;
 
-        default:
+        default:ConsoleColor.Red.WriteConsole("Invalid operation,please enter the correct operation");
             break;
     }
 
 
 }
+
 
 Menu: ConsoleColor.Green.WriteConsole("Welcome our application");
 
@@ -100,5 +101,5 @@ while (true)
 static void GetMenues()
 {
     
-    Console.WriteLine("\nPlease select one option:\nGroup operations:\n1-Create,\n2-Delete,\n3-Edit,\n4-GetById,\n5-GetAll,\n6-Search,\n7-Sorting\n~~~~~~~~~~~~~~~~~~~~~~~~~~~\nStudent operations:\n8-Create,\n9-Delete,\n0-Edit,\n11-GetById,\n12-GetAll,\n13-Filter,\n14-Search");
+    Console.WriteLine("\nPlease select one option:\nGroup operations:\n1-Create,\n2-Delete,\n3-Edit,\n4-GetById,\n5-GetAll,\n6-Search,\n7-Sorting\n~~~~~~~~~~~~~~~~~~~~~~~~~~~\nStudent operations:\n8-Create,\n9-Delete,\n10-Edit,\n11-GetById,\n12-GetAll,\n13-Filter,\n14-Search");
 }

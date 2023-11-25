@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Service.Helpers.Extensions
@@ -23,13 +24,11 @@ namespace Service.Helpers.Extensions
 
         public static bool CheckEmail(this string email)
         {
-            if (!email.Contains("@"))
-            {
-                ConsoleColor.Red.WriteConsole("@ is required");
-                return false;
-            }
-            return true;
+            string reg = (@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            return Regex.IsMatch(email, reg);
         }
+
+        
     }
 
     

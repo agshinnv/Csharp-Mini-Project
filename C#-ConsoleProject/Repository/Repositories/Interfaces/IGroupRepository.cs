@@ -11,5 +11,6 @@ namespace Repository.Repositories.Interfaces
     {
         List<Group> Search(string searchtext);
         List<Group> Sort(string sortType);
+        void Edit(int id, Group group);
     }
 }

@@ -11,6 +11,22 @@ namespace Repository.Repositories
 {
     public class GroupRepository : BaseRepository<Group>, IGroupRepository
     {
+        public void Edit(int id, Group group)
+        {
+            var res = GetbyId(id);
+            if (res != null)
+            {
+                if (string.IsNullOrWhiteSpace(group.Name))
+                {
+                    group.Name = res.Name;
+                }
+                if (group.Capacity != 0) 
+                {
+                    group.Capacity = res.Capacity;
+                }
+            }
+        }
+
         public List<Group> Search(string searchtext)
         {
             return AppDbContext<Group>.Datas.Where(m=>m.Name.Trim().ToLower().Contains(searchtext.Trim().ToLower())).ToList();

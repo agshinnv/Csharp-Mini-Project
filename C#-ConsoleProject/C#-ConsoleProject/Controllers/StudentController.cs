@@ -13,10 +13,12 @@ namespace C__ConsoleProject.Controllers
     public class StudentController
     {
         private readonly StudentService _service;
+        private readonly GroupService _groupService;
 
         public StudentController()
         {
             _service = new StudentService();
+            _groupService = new GroupService();
         }
 
         public void Create()
@@ -66,27 +68,39 @@ namespace C__ConsoleProject.Controllers
             }
                        
 
-            Console.WriteLine("Please enter group ID:");
-            Id: string idStr = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(idStr))
+            Console.WriteLine("Please enter group ID for change student group:");
+            Group: string groupStr = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(groupStr))
             {
                 ConsoleColor.Red.WriteConsole("Can't be empty");
-                goto Id;
+                goto Group;
             }
             
-            bool isFormatId = int.TryParse(idStr, out int id);
+            bool isFormatId = int.TryParse(groupStr, out int id);
             if(!isFormatId)
             {
                 ConsoleColor.Red.WriteConsole("Format is wrong");
-                goto Id;
-            }            
+                goto Group;
+            }
+            
+            var group = _groupService.GetbyId(id);
+
+            if(group == null)
+            {
+                Console.WriteLine("Group not found");
+                goto Group;
+            }
+
+
+
 
             Student student = new Student()
             {
                 FullName = fullName,
                 Phone = phone,
                 Address = address.Trim().ToLower(),
-                Age = age                
+                Age = age,
+                Group = group
             };
 
                       
@@ -160,7 +174,7 @@ namespace C__ConsoleProject.Controllers
             var result = _service.GetAll();
             foreach (var item in result)
             {
-                Console.WriteLine($"{item.Id} - {item.FullName} - {item.Address} - {item.Age}");
+                Console.WriteLine($"{item.Id} - {item.FullName} - {item.Address} - {item.Age} - {item.Group.Name}");
             }
         }
 

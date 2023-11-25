@@ -9,8 +9,7 @@ namespace Repository.Repositories.Interfaces
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
-        void Create(T entity);
-        void Edit(T entity);
+        void Create(T entity);        
         void Delete(T entity);
         T GetbyId(int id);
         List<T> GetAll();        

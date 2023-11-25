@@ -67,6 +67,7 @@ namespace C__ConsoleProject.Controllers
             }
             else if(!email.CheckEmail())
             {
+                ConsoleColor.Red.WriteConsole("Email format is wrong");
                 goto Email;
             }
             else
