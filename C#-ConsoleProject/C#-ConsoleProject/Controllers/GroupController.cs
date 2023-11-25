@@ -89,6 +89,11 @@ namespace C__ConsoleProject.Controllers
             
         }
 
+        public void Edit()
+        {
+
+        }
+
         public void GetById()
         {
             ConsoleColor.Blue.WriteConsole("Please write Id of group which you want delete:");

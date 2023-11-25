@@ -3,7 +3,7 @@ using Service.Enums;
 using Service.Helpers.Extensions;
 using Spectre.Console;
 AnsiConsole.Write(
-    new FigletText("Welcome our Application")
+    new FigletText("C# mini-project")
         .LeftJustified()
         .Color(Color.LightGoldenrod2_2));
 
@@ -11,101 +11,94 @@ AccountController AccountController = new AccountController();
 GroupController groupController = new GroupController();
 StudentController studentController = new StudentController();
 
-//while (true)
-//{
-//    Console.WriteLine("Choose one option : 1-Login or 2-Register");
-//    string operationStr = Console.ReadLine();
-//    bool isFormatOperation = int.TryParse(operationStr, out int operation);   
-
-
-//    switch (operation)
-//    {
-//        case (int)AccountOperationTypes.Register:
-//            AccountController.Register();
-//            break;
-
-
-//        case (int)AccountOperationTypes.Login:
-//           AccountController.Login();
-//            break;
-
-//        default:
-//            break;
-//    }
-
-
-//}
-
-
-
-
-
-//static void GetMenues()
-//{
-//    ConsoleColor.Magenta.WriteConsole("Please select one option: Group operations: <1> Create, <2> Delete, <3> Edit, <4> GetById, <5> GetAll, <6> Search, <7> Sorting | Student operations : 8-Create, 9-Delete, 10-Edit, 11-GetById, 12-GetAll,13-Filter, 14-Search");
-//}
-
-
-//while (true)
-//{
-//    Console.WriteLine("Choose one option : ");
-//    string operationStr = Console.ReadLine();
-//    bool isFormatOperation = int.TryParse(operationStr, out int operation);
-
-//    switch (operation)
-//    {
-//        case 1: studentController.Create();
-//            break;
-//        case 2: studentController.Delete(); 
-//            break;
-//        case 3: studentController.GetById();
-//            break;
-//        case 4: studentController.GetAll();
-//            break;
-//        case 5: studentController.Search();
-//            break;
-//        case 6: studentController.Sorting();
-//            break;
-
-
-
-//        default:
-//            break;
-//    }
-//}
-
-
-
 while (true)
 {
-    Console.WriteLine("Choose one option : ");
+    Console.WriteLine("Choose one option : 1-Login or 2-Register");
     string operationStr = Console.ReadLine();
     bool isFormatOperation = int.TryParse(operationStr, out int operation);
 
+
     switch (operation)
     {
-        case 1:
-            groupController.Create();
-            break;
-        case 2:
-            groupController.Delete();
-            break;
-        case 3:
-            groupController.GetById();
-            break;
-        case 4:
-            groupController.GetAll();
-            break;
-        case 5:
-            groupController.Search();
-            break;
-        case 6:
-            groupController.Sort();
+        case (int)AccountOperationTypes.Register:
+            AccountController.Register();
             break;
 
 
+        case (int)AccountOperationTypes.Login:
+            AccountController.Login();
+            goto Menu;
 
         default:
             break;
     }
+
+
+}
+
+Menu: ConsoleColor.Green.WriteConsole("Welcome our application");
+
+while (true)
+{
+    GetMenues();
+    Console.WriteLine("Choose one option : ");
+    Operation: string opStr = Console.ReadLine();
+    bool isFormatOperation = int.TryParse(opStr, out int operation);
+
+    switch (operation)
+    {
+        case (int)OperationTypes.GroupCreate:
+            groupController.Create();
+            break;
+        case (int)OperationTypes.GroupDelete:
+            groupController.Delete();
+            break;
+        case (int)OperationTypes.GroupEdit:
+            groupController.Edit();
+            break;
+        case (int)OperationTypes.GroupGetById:
+            groupController.GetById();
+            break;
+        case (int)OperationTypes.GroupGetAll:
+            groupController.GetAll();
+            break;
+        case (int)OperationTypes.GroupSearch:
+            groupController.Search();
+            break;
+        case (int)OperationTypes.GroupSorting:
+            groupController.Sort();
+            break;
+        case (int)OperationTypes.StudentCreate:
+            studentController.Create();
+            break;
+        case (int)OperationTypes.StudentDelete:
+            studentController.Delete();
+            break;
+        case (int)OperationTypes.StudentEdit:
+            studentController.Edit();
+            break;
+        case (int)OperationTypes.StudentGetById:
+            studentController.GetById();
+            break;
+        case (int)OperationTypes.StudentGetAll:
+            studentController.GetAll();
+            break;
+        case (int)OperationTypes.StudentFilter:
+            studentController.Sorting();
+            break;
+        case (int)OperationTypes.StudentSearch:
+            studentController.Search();
+            break;
+
+
+        default:
+            Console.WriteLine("Invalid operation,please enter the correct operation");
+            goto Operation;
+    }
+}
+
+static void GetMenues()
+{
+    
+    Console.WriteLine("\nPlease select one option:\nGroup operations:\n1-Create,\n2-Delete,\n3-Edit,\n4-GetById,\n5-GetAll,\n6-Search,\n7-Sorting\n~~~~~~~~~~~~~~~~~~~~~~~~~~~\nStudent operations:\n8-Create,\n9-Delete,\n0-Edit,\n11-GetById,\n12-GetAll,\n13-Filter,\n14-Search");
 }
