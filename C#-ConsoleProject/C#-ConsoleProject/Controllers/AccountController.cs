@@ -61,6 +61,7 @@ namespace C__ConsoleProject.Controllers
 
             if (age <= 0)
             {
+                Console.Beep(1000, 3000);
                 ConsoleColor.Red.WriteConsole("Age can't be negative");
                 goto Age;
             }

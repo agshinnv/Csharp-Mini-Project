@@ -199,12 +199,10 @@ namespace C__ConsoleProject.Controllers
                         ConsoleColor.Red.WriteConsole("The age range you want to change should be between 15-100");
                         goto Age;
                     }                   
-
-                    
-
+                                       
 
                     Console.WriteLine("Please write the student phone for changing:");
-                    string phone = Console.ReadLine();
+                    Phone: string phone = Console.ReadLine();
                     int phoneStr;
                     bool isFormatPhone = int.TryParse(phone, out phoneStr);
                     
@@ -214,16 +212,27 @@ namespace C__ConsoleProject.Controllers
                         {
                             phone = student.Phone;
                         }
+                        else if (!phone.PhoneFormat())
+                        {
+                            ConsoleColor.Red.WriteConsole("Phone format is wrong");
+                            goto Phone;
+                        }
+                        else
+                        {
+                            phone.PhoneFormat();
+                        }
                     }
 
-                    if (isFormatPhone)
+                    if (isFormatPhone is true)
                     {
                         goto GroupName;
                     }
 
 
-                    Console.WriteLine("Please write group name for changing:");
-                    GroupName: string groupName = Console.ReadLine();
+                    GroupName: Console.WriteLine("Please write group name for changing:");
+                    string groupName = Console.ReadLine();
+
+
 
                     foreach (var group in _groupService.GetAll())
                     {
@@ -234,6 +243,7 @@ namespace C__ConsoleProject.Controllers
                     }
 
                     _service.Edit(id, new Student { FullName = fullName, Address = address, Age = age, Phone = phone, Group = new Group { Name = groupName, Capacity = result.Group.Capacity } });
+                    ConsoleColor.Green.WriteConsole("Student information was succefully edited");
 
                 }
             }
@@ -268,6 +278,8 @@ namespace C__ConsoleProject.Controllers
             var student = students.FirstOrDefault(m => m.Id == id);
 
             _service.Delete(student);
+
+            ConsoleColor.Green.WriteConsole("The deletion process has completed successfully");
 
 
         }
@@ -322,6 +334,11 @@ namespace C__ConsoleProject.Controllers
             }
 
             var res = _service.Search(text);
+
+            if (res.Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole("No student matching the search was found");
+            }
 
             foreach (var item in res)
             {

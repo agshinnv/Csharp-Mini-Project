@@ -11,29 +11,29 @@ AccountController accountController = new AccountController();
 GroupController groupController = new GroupController();
 StudentController studentController = new StudentController();
 
-//while (true)
-//{
-//    Console.WriteLine("Choose one option : 1-Login or 2-Register");
-//    string operationStr = Console.ReadLine();
-//    bool isFormatOperation = int.TryParse(operationStr, out int operation);
+while (true)
+{
+    Console.WriteLine("Choose one option : 1-Login or 2-Register");
+    string operationStr = Console.ReadLine();
+    bool isFormatOperation = int.TryParse(operationStr, out int operation);
 
 
-//    switch (operation)
-//    {
-//        case (int)AccountOperationTypes.Register:
-//            accountController.Register();
-//            break;
+    switch (operation)
+    {
+        case (int)AccountOperationTypes.Register:
+            accountController.Register();
+            break;
 
 
-//        case (int)AccountOperationTypes.Login:
-//            accountController.Login();
-//            goto Menu;
+        case (int)AccountOperationTypes.Login:
+            accountController.Login();
+            goto Menu;
 
-//        default:ConsoleColor.Red.WriteConsole("Invalid operation,please enter the correct operation");
-//            break;
-//    }
+        default:ConsoleColor.Red.WriteConsole("Invalid operation,please enter the correct operation");
+            break;
+    }
 
-//}
+}
 
 
 Menu: ConsoleColor.Green.WriteConsole("Welcome our application");
@@ -92,7 +92,7 @@ while (true)
 
 
         default:
-            Console.WriteLine("Invalid operation,please enter the correct operation");
+            ConsoleColor.Red.WriteConsole("Invalid operation,please enter the correct operation");
             goto Operation;
     }
 }

@@ -103,6 +103,8 @@ namespace C__ConsoleProject.Controllers
             var student = groups.FirstOrDefault(m => m.Id == id);
 
             _service.Delete(student);
+
+            ConsoleColor.Green.WriteConsole("The deletion process has completed successfully");
         }
         public void Edit()
         {
@@ -161,7 +163,7 @@ namespace C__ConsoleProject.Controllers
 
         public void GetById()
         {
-            ConsoleColor.Blue.WriteConsole("Please write Id of group which you want delete:");
+            ConsoleColor.Blue.WriteConsole("Please write Id of group which you want to show:");
             GroupId: string idStr = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(idStr))
@@ -180,7 +182,7 @@ namespace C__ConsoleProject.Controllers
                 goto GroupId;
             }
 
-            Console.WriteLine($"{result.Name}");
+            Console.WriteLine($"{result.Id} - {result.Name} - {result.Capacity}");
         }
 
 
@@ -197,18 +199,27 @@ namespace C__ConsoleProject.Controllers
 
         public void Search()
         {
-            Console.WriteLine("Please write what do you want to search:");
+            Console.WriteLine("Please write the name you want to search for:");
             Text: string text = Console.ReadLine();
 
             if(string.IsNullOrWhiteSpace(text))
             {
                 ConsoleColor.Red.WriteConsole("Can't be empty");                
                 goto Text;
-            }
+            }                    
+
+
 
             var res = _service.Search(text);
 
-            foreach(var item in res)
+            if(res.Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole("No name matching your search was found");
+            }
+
+            
+
+            foreach (var item in res)
             {
                 Console.WriteLine($"Group name: {item.Name} - Group capacity: {item.Capacity}");
             }
