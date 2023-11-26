@@ -50,6 +50,8 @@ namespace C__ConsoleProject.Controllers
                 goto Capacity;
             }
 
+           
+
             bool isFormatCapacity = int.TryParse(capacityStr, out int capacity);
             if(!isFormatCapacity)
             {
@@ -57,7 +59,13 @@ namespace C__ConsoleProject.Controllers
                 goto Capacity;
             }
 
-            
+            if (capacity <= 0 || capacity > 20)
+            {
+                ConsoleColor.Red.WriteConsole("Group capacity should be between 1-20");
+                goto Capacity;
+            }
+
+
             Group group = new Group
             {
                 Name = name,
@@ -99,9 +107,14 @@ namespace C__ConsoleProject.Controllers
         public void Edit()
         {
             Console.WriteLine("Write ID for changing:");
-            string idStr = Console.ReadLine();
+            Id: string idStr = Console.ReadLine();
             bool isCorrectFormat = int.TryParse(idStr,out int id);
-            if (isCorrectFormat)
+            if(!isCorrectFormat)
+            {
+                ConsoleColor.Red.WriteConsole("ID format is wrong");
+                goto Id;
+            }
+            else
             {
                 var result = _service.GetbyId(id);
                 if(result == null)
@@ -127,19 +140,22 @@ namespace C__ConsoleProject.Controllers
                     }
 
 
-                    Console.WriteLine("Please write teh group capacity for change:");
+                    Console.WriteLine("Please set group capacity for changing:");
                     string capacityStr = Console.ReadLine();
-                    bool isFormatCorrect = int.TryParse(capacityStr,out int capacity);
+                    int capacity;
+                    bool isFormatCorrect = int.TryParse(capacityStr,out capacity);
+
+                    if (string.IsNullOrWhiteSpace(capacityStr))
+                    {
+                        capacity = (int)result.Capacity;
+                    }
+
+                    
 
                     _service.Edit(id, new Group { Name = name, Capacity = capacity });
-                    Console.WriteLine("Group information was successfully edited");
+                    ConsoleColor.Green.WriteConsole("Group information was successfully edited");
                 }
-            }
-
-            if(!isCorrectFormat)
-            {
-                ConsoleColor.Red.WriteConsole("Format is wrong");
-            }
+            }            
 
         }
 
@@ -158,6 +174,12 @@ namespace C__ConsoleProject.Controllers
 
             var result = _service.GetbyId(id);
 
+            if(result == null)
+            {
+                ConsoleColor.Red.WriteConsole("No such group was found");
+                goto GroupId;
+            }
+
             Console.WriteLine($"{result.Name}");
         }
 
@@ -168,7 +190,7 @@ namespace C__ConsoleProject.Controllers
             var result = _service.GetAll();
             foreach(var item in result)
             {
-                Console.WriteLine($"{item.Id} - {item.Name} - {item.Capacity}");
+                Console.WriteLine($"Group ID: {item.Id} - Group name: {item.Name} - Group capacity: {item.Capacity}");
             }
         }
 
@@ -180,8 +202,7 @@ namespace C__ConsoleProject.Controllers
 
             if(string.IsNullOrWhiteSpace(text))
             {
-                ConsoleColor.Red.WriteConsole("Can't be empty");
-                
+                ConsoleColor.Red.WriteConsole("Can't be empty");                
                 goto Text;
             }
 
@@ -189,7 +210,7 @@ namespace C__ConsoleProject.Controllers
 
             foreach(var item in res)
             {
-                Console.WriteLine($"{item.Name} - {item.Capacity}");
+                Console.WriteLine($"Group name: {item.Name} - Group capacity: {item.Capacity}");
             }
         }
 

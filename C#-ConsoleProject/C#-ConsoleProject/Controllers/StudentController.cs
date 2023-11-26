@@ -2,6 +2,7 @@
 using Repository.Data;
 using Service.Helpers.Extensions;
 using Service.Services;
+using Service.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace C__ConsoleProject.Controllers
 {
     public class StudentController
     {
-        private readonly StudentService _service;
-        private readonly GroupService _groupService;
+        private readonly IStudentService _service;
+        private readonly IGroupService _groupService;
 
         public StudentController()
         {
@@ -23,6 +24,14 @@ namespace C__ConsoleProject.Controllers
 
         public void Create()
         {
+            var result = _groupService.GetAll();
+            if(result.Count == 0)
+            {
+                ConsoleColor.Red.WriteConsole("Please create a group, you don't have a group");
+                return;
+                
+            }
+            
             Console.WriteLine("Please add student name and surname:");
             Name: string fullName = Console.ReadLine();
 
@@ -50,12 +59,17 @@ namespace C__ConsoleProject.Controllers
                 ConsoleColor.Red.WriteConsole("Can't be empty");
                 goto Age;
             }
-
+            
             bool isFormatAge = int.TryParse(ageStr, out int age);
 
             if(!isFormatAge)
             {
                 ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Age;
+            }
+            if (age <= 14 || age > 100) 
+            {
+                ConsoleColor.Red.WriteConsole("Registration age should be between 15-100");
                 goto Age;
             }
 
@@ -66,9 +80,17 @@ namespace C__ConsoleProject.Controllers
                 ConsoleColor.Red.WriteConsole("Can't be empty");
                 goto Phone;
             }
-                       
+            else if (!phone.PhoneFormat())
+            {
+                ConsoleColor.Red.WriteConsole("Phone format is wrong");
+                goto Phone;
+            }
+            else
+            {
+                phone.PhoneFormat();
+            }
 
-            Console.WriteLine("Please enter group ID for change student group:");
+            Console.WriteLine("Please enter Group ID:");
             Group: string groupStr = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(groupStr))
             {
@@ -87,11 +109,9 @@ namespace C__ConsoleProject.Controllers
 
             if(group == null)
             {
-                Console.WriteLine("Group not found");
+                ConsoleColor.Red.WriteConsole("Group not found, first you need to create a group");
                 goto Group;
             }
-
-
 
 
             Student student = new Student()
@@ -103,7 +123,7 @@ namespace C__ConsoleProject.Controllers
                 Group = group
             };
 
-                      
+                    
 
 
             _service.Create(student);
@@ -113,12 +133,115 @@ namespace C__ConsoleProject.Controllers
 
         public void Edit()
         {
+            Console.WriteLine("Write the ID of the student you want change:");
+            Id: string idStr = Console.ReadLine();
 
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteConsole("Can't be empty");
+                goto Id;
+            }
+
+            bool isCorrectFormat = int.TryParse(idStr, out int id);
+            if(!isCorrectFormat)
+            {
+                ConsoleColor.Red.WriteConsole("ID format is wrong");
+                goto Id;
+            }
+            else
+            {
+                var result = _service.GetbyId(id);
+                if(result == null)
+                {
+                    ConsoleColor.Red.WriteConsole("Data not found");
+                }
+                if(result != null)
+                {
+                    Console.WriteLine($"Student ID: {result.Id} - Student name: {result.FullName} - Address: {result.Address} - Student age: {result.Age} - Phone number: {result.Phone} - Group name: {result.Group.Name} - Group capacity: {result.Group.Capacity}");
+
+                    Console.WriteLine("Please write the student Fullname for changing:");
+                    string fullName = Console.ReadLine();
+
+                    var students = _service.GetAll();
+
+                    foreach( var student in students)
+                    {
+                        if (string.IsNullOrWhiteSpace(fullName))
+                        {
+                            fullName = student.FullName;
+                            
+                        }
+                    }
+
+                    Console.WriteLine("Please write the student address for changing:");
+                    string address = Console.ReadLine();
+
+                    foreach(var student in students)
+                    {
+                        if (string.IsNullOrWhiteSpace(address))
+                        {
+                            address = student.Address;
+                        }
+                    }    
+
+                    Console.WriteLine("Please write the student age for changing:");
+                    Age: string ageStr = Console.ReadLine();
+                    int age;
+                    bool isFormatAge = int.TryParse(ageStr, out age);
+
+                    if (string.IsNullOrWhiteSpace(ageStr))
+                    {
+                        age = (int)result.Age;
+                    }
+
+                    if (age <= 14 || age > 100)
+                    {
+                        ConsoleColor.Red.WriteConsole("The age range you want to change should be between 15-100");
+                        goto Age;
+                    }                   
+
+                    
+
+
+                    Console.WriteLine("Please write the student phone for changing:");
+                    string phone = Console.ReadLine();
+                    int phoneStr;
+                    bool isFormatPhone = int.TryParse(phone, out phoneStr);
+                    
+                    foreach(var student in students)
+                    {
+                        if(string.IsNullOrWhiteSpace(phone))
+                        {
+                            phone = student.Phone;
+                        }
+                    }
+
+                    if (isFormatPhone)
+                    {
+                        goto GroupName;
+                    }
+
+
+                    Console.WriteLine("Please write group name for changing:");
+                    GroupName: string groupName = Console.ReadLine();
+
+                    foreach (var group in _groupService.GetAll())
+                    {
+                        if (string.IsNullOrWhiteSpace(groupName))
+                        {
+                            groupName = group.Name;
+                        }
+                    }
+
+                    _service.Edit(id, new Student { FullName = fullName, Address = address, Age = age, Phone = phone, Group = new Group { Name = groupName, Capacity = result.Group.Capacity } });
+
+                }
+            }
         }
 
 
         public void Delete()
-        {
+        {            
             var students = _service.GetAll();
 
             foreach (var item in students)
@@ -164,23 +287,30 @@ namespace C__ConsoleProject.Controllers
 
             var result = _service.GetbyId(id);
 
-            Console.WriteLine($"{result.Id} - {result.FullName} - {result.Address} - {result.Age}");
+            if (result == null)
+            {
+                ConsoleColor.Red.WriteConsole("No such student was found");
+                goto StudentId;
+            }
+
+            Console.WriteLine($"ID: {result.Id} - {result.FullName} - {result.Address} - {result.Age}");
 
         }
 
         public void GetAll()
         {
-            Console.WriteLine("All students:");
+            Console.WriteLine("All students information:");
             var result = _service.GetAll();
             foreach (var item in result)
             {
-                Console.WriteLine($"{item.Id} - {item.FullName} - {item.Address} - {item.Age} - {item.Group.Name}");
+                Console.WriteLine($"ID: {item.Id} - FullName: {item.FullName} - Address: {item.Address} - Age: {item.Age} - Phone number : {item.Phone} - Group name: {item.Group.Name} - Group capacity: {item.Group.Capacity}");
             }
         }
 
 
         public void Search()
         {
+            
             Console.WriteLine("Please write student Fullname:");
             Text: string text = Console.ReadLine();
 
@@ -201,6 +331,7 @@ namespace C__ConsoleProject.Controllers
 
         public void Sorting()
         {
+            
             Console.WriteLine("Please select one to sort students by age: asc or desc");
 
             string sortText = Console.ReadLine();
@@ -209,8 +340,7 @@ namespace C__ConsoleProject.Controllers
             {
                 Console.WriteLine(student.Id + "-" + student.FullName + "-" + student.Age + "-" + student.Address);
             }
-
-            
+                        
         }
     }
 }

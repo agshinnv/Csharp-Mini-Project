@@ -11,5 +11,6 @@ namespace Repository.Repositories.Interfaces
     {
         List<Student> Search(string searchtext);
         List<Student> Sorting(string sortType);
+        void Edit(int id,Student student);
     }
 }

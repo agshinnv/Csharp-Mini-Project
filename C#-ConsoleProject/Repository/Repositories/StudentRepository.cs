@@ -20,5 +20,37 @@ namespace Repository.Repositories
         {
             return AppDbContext<Student>.Datas.Where(m=>m.FullName.Trim().ToLower() == searchtext.Trim().ToLower()).ToList();
         }
+
+        public void Edit(int id, Student student)
+        {
+            var res = GetbyId(id);
+            if (res != null)
+            {
+                if (!string.IsNullOrWhiteSpace(res.FullName))
+                {
+                    res.FullName = student.FullName;
+                }
+
+                if(!string.IsNullOrWhiteSpace(res.Address))
+                {
+                    res.Address = student.Address;
+                }
+
+                if(!string.IsNullOrWhiteSpace(res.Phone))
+                {
+                    res.Phone = student.Phone;
+                }
+
+                if(student.Age != null)
+                {
+                    res.Age = student.Age;
+                }
+
+                if(student.Group != null)
+                {
+                    res.Group = student.Group;
+                }
+            }
+        }
     }
 }

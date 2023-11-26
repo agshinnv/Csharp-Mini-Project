@@ -16,13 +16,13 @@ namespace Repository.Repositories
             var res = GetbyId(id);
             if (res != null)
             {
-                if (string.IsNullOrWhiteSpace(group.Name))
+                if (!string.IsNullOrWhiteSpace(group.Name))
                 {
-                    group.Name = res.Name;
+                    res.Name = group.Name;
                 }
-                if (group.Capacity != 0) 
+                if (group.Capacity != null) 
                 {
-                    group.Capacity = res.Capacity;
+                    res.Capacity = group.Capacity;
                 }
             }
         }

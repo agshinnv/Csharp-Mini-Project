@@ -29,9 +29,9 @@ namespace Service.Services
             _repository.Delete(student);
         }
 
-        public void Edit(Student student)
+        public void Edit(int id, Student student)
         {
-            throw new NotImplementedException();
+            _repository.Edit(id, student);
         }
 
         public List<Student> Sorting(string sortType)

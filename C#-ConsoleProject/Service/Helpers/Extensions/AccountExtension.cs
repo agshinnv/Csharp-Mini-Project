@@ -14,7 +14,7 @@ namespace Service.Helpers.Extensions
         {
             if(password != confirmPassword)
             {
-                ConsoleColor.Red.WriteConsole("The information you typed doesn't match");
+                ConsoleColor.Red.WriteConsole("The information you typed doesn't match, please add password again");
                 return false;
             }
 

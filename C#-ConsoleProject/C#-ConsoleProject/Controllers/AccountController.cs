@@ -28,7 +28,9 @@ namespace C__ConsoleProject.Controllers
             if(string.IsNullOrWhiteSpace(name))
             {
                 ConsoleColor.Red.WriteConsole("Name can't be empty");
+                
                 goto Name;
+                
             }
 
 
@@ -57,7 +59,13 @@ namespace C__ConsoleProject.Controllers
                 goto Age;
             }
 
-            
+            if (age <= 0)
+            {
+                ConsoleColor.Red.WriteConsole("Age can't be negative");
+                goto Age;
+            }
+
+
             Console.WriteLine("Please add email:");
             Email: string email = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(email))
@@ -86,9 +94,10 @@ namespace C__ConsoleProject.Controllers
 
             Console.WriteLine("Confirm password:");
             ConfirmPass: string confirmPassword = Console.ReadLine();
+
             if (!password.ConfirmPass(confirmPassword))
             {
-                goto ConfirmPass;
+                goto Pass;
             }
             
 
@@ -118,6 +127,7 @@ namespace C__ConsoleProject.Controllers
             }
             else if (!email.CheckEmail())
             {
+                ConsoleColor.Red.WriteConsole("Email format is wrong");
                 goto Email;
             }
             else
@@ -138,6 +148,7 @@ namespace C__ConsoleProject.Controllers
             if(!res)
             {
                 ConsoleColor.Red.WriteConsole("Email or password is wrong");
+                goto Pass;
             }
             else
             {
